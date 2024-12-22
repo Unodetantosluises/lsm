@@ -34,7 +34,7 @@ public class Feedback {
     @Column(nullable = false)
     private int rating;
 
-    @Column(nullable = true, length = 255)
+    @Column(nullable = true, columnDefinition = "TEXT")
     private String comment;
 
     @Column(nullable = false)

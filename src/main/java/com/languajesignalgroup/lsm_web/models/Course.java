@@ -8,6 +8,7 @@ import lombok.NoArgsConstructor;
 import org.hibernate.annotations.CreationTimestamp;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 
 @Data
@@ -24,6 +25,12 @@ public class Course {
     @Column(nullable = false, length = 80)
     private String courseName;
 
+    @Column(nullable = false, length = 80)
+    private String courseCover;
+
+    @Column(nullable = false, length = 255)
+    private String courseDescription;
+
     @ManyToOne
     @JoinColumn(name = "teacher_id", nullable = false)
     private Teacher teacherId;
@@ -36,9 +43,9 @@ public class Course {
     @CreationTimestamp
     private LocalDateTime creationDate;
 
-    @OneToMany(mappedBy = "course")
-    private List<Lesson> lessons;
+    @OneToMany(mappedBy = "course", cascade = CascadeType.REMOVE)
+    private List<Lesson> lessons = new ArrayList<>();
 
-    @OneToMany(mappedBy = "course")
-    private List<Enrollment> enrollments;
+    @OneToMany(mappedBy = "course", cascade = CascadeType.REMOVE)
+    private List<Enrollment> enrollments = new ArrayList<>();
 }

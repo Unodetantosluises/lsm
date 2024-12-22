@@ -13,6 +13,8 @@ public class CourseDto {
 
     private String courseName;
 
+    private String courseCover;
+
     private Long teacherId; //Evita traer la entidad Teacher completa
 
     private  String teacherName;

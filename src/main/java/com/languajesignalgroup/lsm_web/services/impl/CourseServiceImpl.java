@@ -31,14 +31,7 @@ public class CourseServiceImpl  implements CourseService {
         CourseDto courseDto = CourseDto.builder()
                 .courseId(course.getCourseId())
                 .courseName(course.getCourseName())
-                .teacherName(course.getTeacherId().getName())
-                .categoryName(course.getCategory().getName())
-                .creationDate(course.getCreationDate())
-                // Mapear solo los IDs de las lecciones
-                .lessons(course.getLessons() != null ?
-                        course.getLessons().stream()
-                                .map(Lesson::getLessonId)
-                                .collect(Collectors.toList()) : null)
+                .courseCover(course.getCourseCover())
                 .build();
         return courseDto;
     }
