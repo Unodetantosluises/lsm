@@ -2,7 +2,6 @@ package com.languajesignalgroup.lsm_web.services.impl;
 
 import com.languajesignalgroup.lsm_web.dto.CourseDto;
 import com.languajesignalgroup.lsm_web.models.Course;
-import com.languajesignalgroup.lsm_web.models.Lesson;
 import com.languajesignalgroup.lsm_web.repository.CourseRepository;
 import com.languajesignalgroup.lsm_web.services.CourseService;
 import org.springframework.beans.factory.annotation.Autowired;

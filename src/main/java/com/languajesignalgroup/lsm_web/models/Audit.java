@@ -20,14 +20,19 @@ public class Audit {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long auditId;
 
-    @ManyToOne
-    @JoinColumn(name = "admin_id", nullable = false)
-    private Admin admin;
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(name = "user_id", nullable = false)
+    private User user;
 
-    @Column(nullable = false, length = 50)
-    private String actionType;
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(name = "role_id", nullable = false)
+    private Role role;
 
+    @Enumerated(EnumType.STRING)
     @Column(nullable = false, length = 50)
+    private ActionType actionType;
+
+    @Column(nullable = false)
     private String tableName;
 
     @Column(nullable = false)
@@ -37,6 +42,10 @@ public class Audit {
     @CreationTimestamp
     private LocalDateTime actionDate;
 
-    @Column(length = 255)
+    @Column(nullable = false)
     private String description;
+
+    public static enum ActionType {
+        CREATE, UPDATE, DELETE
+    }
 }

@@ -21,8 +21,8 @@ public class Progress {
     private Long progressId;
 
     @ManyToOne
-    @JoinColumn(name = "student_id", nullable = false)
-    private Student student;
+    @JoinColumn(name = "user_id", nullable = false)
+    private User user;
 
     @ManyToOne
     @JoinColumn(name = "course_id", nullable = false)

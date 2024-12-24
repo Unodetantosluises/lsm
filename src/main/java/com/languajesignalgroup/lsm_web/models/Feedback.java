@@ -6,6 +6,7 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
 
 import java.time.LocalDateTime;
 
@@ -18,26 +19,30 @@ import java.time.LocalDateTime;
 public class Feedback {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long reviewId;
+    private Long feedbackId;
 
     @ManyToOne
-    @JoinColumn(name = "student_Id", nullable = false)
-    private Student student;
+    @JoinColumn(name = "user_Id", nullable = false)
+    private User user;
 
     @ManyToOne
     @JoinColumn(name = "course_Id", nullable = false)
     private Course course;
 
-    @Column(nullable = false, length = 50)
-    private String name;
+    @Column(nullable = false, length = 250)
+    private String feedbackTitle;
 
     @Column(nullable = false)
     private int rating;
 
-    @Column(nullable = true, columnDefinition = "TEXT")
+    @Column(columnDefinition = "TEXT")
     private String comment;
 
     @Column(nullable = false)
     @CreationTimestamp
     private LocalDateTime creationDate;
+
+    @Column(nullable = false)
+    @UpdateTimestamp
+    private LocalDateTime updateDate;
 }

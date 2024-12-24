@@ -22,15 +22,12 @@ public class Lesson {
     @GeneratedValue(strategy = GenerationType.IDENTITY)  // Lesson id
     private Long lessonId;
 
-    @ManyToOne
-    @JoinColumn(name = "course_id", nullable = false)  // Course id this lesson belongs
-    private Course course;
-
     @Column(nullable = false, length = 100) // Title of the lesson
     @NotEmpty(message = "Lesson title should not be empty.")
     private String title;
 
-    @Column(nullable = true, columnDefinition = "TEXT") // Instructions for the lesson
+    @Column(nullable = false, columnDefinition = "TEXT") // Instructions for the lesson
+    @NotEmpty(message = "Lesson instructions should not be empty.")
     private String instructions;
 
     @Column(nullable = false, length = 50) // Lesson type
@@ -50,4 +47,8 @@ public class Lesson {
     @Column(nullable = false) // Update date of the lesson
     @UpdateTimestamp
     private LocalDateTime updateDate;
+
+    @ManyToOne
+    @JoinColumn(name = "course_id", nullable = false)  // Course id this lesson belongs
+    private Course course;
 }

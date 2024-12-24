@@ -6,6 +6,7 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
 
 import java.time.LocalDateTime;
 
@@ -21,5 +22,19 @@ public class Category {
     private Long categoryId;
 
     @Column(nullable = false, length = 50)
-    private String name;
+    private String categoryName;
+
+    @Column(nullable = false)
+    private String categoryDescription;
+
+    @Column(nullable = false)
+    private boolean active;
+
+    @Column(nullable = false)
+    @CreationTimestamp
+    private LocalDateTime creationDate;
+
+    @Column
+    @UpdateTimestamp
+    private LocalDateTime updatedOn;
 }
