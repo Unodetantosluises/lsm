@@ -6,6 +6,7 @@ import lombok.*;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
@@ -40,7 +41,8 @@ public class User {
 
     @Column(nullable = false) // User birthdate
     @NotEmpty(message = "User Birthdate should not be empty.")
-    private LocalDateTime birthdateUser;
+    @PastOrPresent(message = "Date of birth can be on the future.")
+    private LocalDate birthdateUser;
 
     @Column // User photo
     private String userPhotoUrl;
