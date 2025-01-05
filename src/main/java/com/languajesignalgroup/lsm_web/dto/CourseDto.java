@@ -9,11 +9,11 @@ import java.util.List;
 @Data
 @Builder
 public class CourseDto {
-    private Long courseId;
+    private Long courseId; // Course Id
 
-    private String courseName;
+    private String courseName; // Course Name
 
-    private String courseCover;
+    private String courseCover; // Course Cover Picture
 
     private Long teacherId; //Evita traer la entidad Teacher completa
 

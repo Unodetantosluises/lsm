@@ -31,8 +31,9 @@ public class User {
     @NotEmpty(message = "User Last Name should not be empty.")
     private String userLastName;
 
-    @Column(nullable = false, length = 150) // User email
+    @Column(nullable = false, length = 150, unique = true) // User email
     @NotEmpty(message = "User Email should not be empty.")
+    @Email(message = "Should be a validate email.")
     private String emailUser;
 
     @Column(nullable = false) // User password
