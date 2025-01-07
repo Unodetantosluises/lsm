@@ -18,6 +18,7 @@ import java.time.LocalDateTime;
 public class Audit {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id")
     private Long auditId;
 
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
@@ -28,24 +29,20 @@ public class Audit {
     @JoinColumn(name = "role_id", nullable = false)
     private Role role;
 
+    @Column(name = "type", nullable = false, length = 50)
     @Enumerated(EnumType.STRING)
-    @Column(nullable = false, length = 50)
-    private ActionType actionType;
+    private ActionType type;
 
-    @Column(nullable = false)
+    @Column(name = "table_name", nullable = false)
     private String tableName;
 
-    @Column(nullable = false)
+    @Column(name = "record_id", nullable = false)
     private Integer recordId;
 
-    @Column(nullable = false)
+    @Column(name = "action_date", nullable = false)
     @CreationTimestamp
     private LocalDateTime actionDate;
 
-    @Column(nullable = false)
+    @Column(name = "description", nullable = false)
     private String description;
-
-    public static enum ActionType {
-        CREATE, UPDATE, DELETE
-    }
 }

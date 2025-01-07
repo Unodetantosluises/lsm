@@ -19,6 +19,7 @@ import java.time.LocalDateTime;
 public class Enrollment {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY) // Enrollment id of the user
+    @Column(name = "id")
     private Long enrollmentId;
 
     @ManyToOne
@@ -26,14 +27,14 @@ public class Enrollment {
     private User user;
 
     @ManyToOne
-    @JoinColumn(name = "course_Id", nullable = false) //user
+    @JoinColumn(name = "course_id", nullable = false) //user
     private Course course;
 
-    @Column(nullable = false)
+    @Column(name = "enrollment_date", nullable = false)
     @CreationTimestamp
     private LocalDateTime enrollmentDate;
 
-    @Column
+    @Column(name = "disenrollment_date")
     @UpdateTimestamp
     private LocalDateTime disenrollmentDate;
 }

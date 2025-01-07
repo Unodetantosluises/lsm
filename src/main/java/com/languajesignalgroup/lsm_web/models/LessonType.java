@@ -4,9 +4,9 @@ import lombok.Getter;
 
 @Getter
 public enum LessonType {
-    MULTIPLE_CHOICE("Multiple Choice"),
-    IMAGE_SELECTION("Image Selection"),
-    TRUE_FALSE("True or False"),
+    CREATE("Multiple Choice"),
+    UPDATE("Image Selection"),
+    DELETE("True or False"),
     VIDEO("Video");
 
     private final String displayName;

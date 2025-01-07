@@ -9,6 +9,8 @@ import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
 import java.time.LocalDateTime;
+import java.util.List;
+import java.util.ArrayList;
 
 @Data
 @NoArgsConstructor
@@ -19,22 +21,26 @@ import java.time.LocalDateTime;
 public class Category {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id")
     private Long categoryId;
 
-    @Column(nullable = false, length = 50)
+    @Column(name = "name", nullable = false, length = 50)
     private String categoryName;
 
-    @Column(nullable = false)
+    @Column(name = "description", nullable = false)
     private String categoryDescription;
 
-    @Column(nullable = false)
+    @Column(name = "active", nullable = false)
     private boolean active;
 
-    @Column(nullable = false)
+    @Column(name = "creation_date", nullable = false)
     @CreationTimestamp
     private LocalDateTime creationDate;
 
-    @Column
+    @Column(name = "updated_on")
     @UpdateTimestamp
     private LocalDateTime updatedOn;
+
+    @OneToMany(mappedBy = "category", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    private List<Course> courses = new ArrayList<>();
 }

@@ -19,6 +19,7 @@ import java.time.LocalDateTime;
 public class Feedback {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id")
     private Long feedbackId;
 
     @ManyToOne
@@ -29,20 +30,20 @@ public class Feedback {
     @JoinColumn(name = "course_Id", nullable = false)
     private Course course;
 
-    @Column(nullable = false, length = 250)
+    @Column(name = "title", nullable = false, length = 250)
     private String feedbackTitle;
 
-    @Column(nullable = false)
+    @Column(name = "rating", nullable = false)
     private int rating;
 
-    @Column(columnDefinition = "TEXT")
+    @Column(name = "comment", columnDefinition = "TEXT")
     private String comment;
 
-    @Column(nullable = false)
+    @Column(name = "creation_date", nullable = false)
     @CreationTimestamp
     private LocalDateTime creationDate;
 
-    @Column(nullable = false)
+    @Column(name = "update_date", nullable = false)
     @UpdateTimestamp
     private LocalDateTime updateDate;
 }

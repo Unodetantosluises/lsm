@@ -18,6 +18,7 @@ import java.time.LocalDateTime;
 public class Progress {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id")
     private Long progressId;
 
     @ManyToOne
@@ -32,10 +33,10 @@ public class Progress {
     @JoinColumn(name = "lesson_id", nullable = false)
     private Lesson lesson;
 
-    @Column(nullable = false)
+    @Column(name = "completed", nullable = false)
     private boolean completed = false;
 
-    @Column(nullable = false)
+    @Column(name = "completion_date", nullable = false)
     @CreationTimestamp
     private LocalDateTime completionDate;
 }

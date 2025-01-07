@@ -21,55 +21,59 @@ import java.util.List;
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY) // User id
+    @Column(name = "id")
     private Long userId;
 
-    @Column(nullable = false, length = 50) // User name
+    @Column(name = "name", nullable = false, length = 50) // User name
     @NotEmpty(message = "User Name should not be empty.")
     private String userName;
 
-    @Column(nullable = false, length = 50) // User last name
+    @Column(name = "last_name", nullable = false, length = 50) // User last name
     @NotEmpty(message = "User Last Name should not be empty.")
     private String userLastName;
 
-    @Column(nullable = false, length = 150, unique = true) // User email
+    @Column(name = "email", nullable = false, length = 150, unique = true) // User email
     @NotEmpty(message = "User Email should not be empty.")
     @Email(message = "Should be a validate email.")
     private String emailUser;
 
-    @Column(nullable = false) // User password
+    @Column(name = "password", nullable = false) // User password
     @NotEmpty(message = "User Password should not be empty.")
     private String password;
 
-    @Column(nullable = false) // User birthdate
+    @Column(name = "birth_date", nullable = false) // User birthdate
     @NotEmpty(message = "User Birthdate should not be empty.")
     @PastOrPresent(message = "Date of birth can be on the future.")
     private LocalDate birthdateUser;
 
-    @Column // User photo
+    @Column(name = "photo_url") // User photo
     private String userPhotoUrl;
 
-    @Column(nullable = false) //User status
+    @Column(name = "active", nullable = false) //User status
     @Builder.Default
     private boolean active = false;
 
-    @Column(nullable = false) // User registration date
+    @Column(name = "registration_date", nullable = false) // User registration date
     @CreationTimestamp
     private LocalDateTime registrationDate;
 
-    @Column(nullable = false) // User registration updated
+    @Column(name = "updated_on", nullable = false) // User registration updated
     @UpdateTimestamp
     private LocalDateTime updatedOn;
 
     @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JoinTable(
             name = "user_roles",
-            joinColumns = {@JoinColumn(name = "user_id", referencedColumnName = "userId")},
-            inverseJoinColumns = {@JoinColumn(name ="role_id", referencedColumnName = "rolId")}
+            joinColumns = {@JoinColumn(name = "user_id", referencedColumnName = "id")},
+            inverseJoinColumns = {@JoinColumn(name ="role_id", referencedColumnName = "id")}
     )
     private List<Role> roles = new ArrayList<>();
 
     @OneToMany(mappedBy = "user", fetch = FetchType.LAZY, cascade = CascadeType.REMOVE)
     private List<Course> courses = new ArrayList<>();
+
+    @OneToMany(mappedBy = "user", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    private List<Course> createdCourses = new ArrayList<>();
 
     @OneToMany(mappedBy = "user", fetch = FetchType.LAZY, cascade = CascadeType.REMOVE)
     private List<Diploma> diplomas = new ArrayList<>();

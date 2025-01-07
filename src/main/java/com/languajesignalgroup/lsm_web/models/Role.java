@@ -19,28 +19,29 @@ import java.util.List;
 public class Role {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY) // Role id
+    @Column(name = "id")
     private Long rolId;
 
-    @Column(nullable = false, length = 50) // Role name
+    @Column(name = "name", nullable = false, length = 50) // Role name
     @NotEmpty(message = "User Role should not be empty.")
     private String rolName;
 
-    @Column(nullable = false, length = 255) // Role description
+    @Column(name = "description", nullable = false, length = 255) // Role description
     @NotEmpty(message = "User Description should not be empty.")
     private String rolDescription;
 
-    @Column(nullable = false) // Role status
+    @Column(name = "active", nullable = false) // Role status
     @Builder.Default
     private boolean active = false;
 
-    @Column(nullable = false) // Role creation date
+    @Column(name = "creation_date", nullable = false) // Role creation date
     @CreationTimestamp
     private LocalDateTime creationDate;
 
-    @Column(nullable = false) // Role update date
+    @Column(name = "updated_on", nullable = false) // Role update date
     @UpdateTimestamp
     private LocalDateTime updatedOn;
 
-    @ManyToMany(mappedBy = "roles")
+    @ManyToMany(mappedBy = "roles", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private List<User> users = new ArrayList<>();
 }

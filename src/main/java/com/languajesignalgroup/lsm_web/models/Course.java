@@ -22,17 +22,18 @@ import java.util.List;
 public class Course {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY) // Course id
+    @Column(name = "id")
     private Long courseId;
 
-    @Column(nullable = false, length = 80) // Course Name
+    @Column(name = "course_name", nullable = false, length = 80) // Course Name
     @NotEmpty(message = "Course name should not be empty.")
     private String courseName;
 
-    @Column(nullable = false, length = 255) // Course Cover
+    @Column(name = "cover", nullable = false) // Course Cover
     @NotEmpty(message = "Course cover should not be empty.")
     private String courseCover;
 
-    @Column(nullable = false, length = 255) // Course Description
+    @Column(name = "description", nullable = false) // Course Description
     @NotEmpty(message = "Course description should not be empty.")
     private String courseDescription;
 
@@ -40,11 +41,11 @@ public class Course {
     @JoinColumn(name = "category_id", nullable = false) // Course category
     private Category category;
 
-    @Column(nullable = false) // Course creation date
+    @Column(name = "creation_date", nullable = false) // Course creation date
     @CreationTimestamp
     private LocalDateTime creationDate;
 
-    @Column(nullable = false) // Course update date
+    @Column(name = "updated_on", nullable = false) // Course update date
     @UpdateTimestamp
     private LocalDateTime updatedOn;
 

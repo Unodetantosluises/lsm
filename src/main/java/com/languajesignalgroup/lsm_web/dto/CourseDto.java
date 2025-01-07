@@ -1,5 +1,7 @@
 package com.languajesignalgroup.lsm_web.dto;
 
+import com.languajesignalgroup.lsm_web.models.Category;
+import com.languajesignalgroup.lsm_web.models.User;
 import lombok.Builder;
 import lombok.Data;
 
@@ -15,17 +17,17 @@ public class CourseDto {
 
     private String courseCover; // Course Cover Picture
 
-    private Long teacherId; //Evita traer la entidad Teacher completa
+    private String courseDescription; //Course Description
 
-    private  String teacherName;
+    private Long userId;
 
-    private Long categoryId; //Evita traer la entidad Category completa
-
-    private String categoryName;
+    private Long categoryId;
 
     private LocalDateTime creationDate;
 
-    private List<Long> lessons; //Referencias a los IDs de las lecciones
+    private LocalDateTime updatedOn;
 
-    private int totalEnrollments; //Numero de inscripciones, evita cargar toda la lista
+    private List<Long> lessons;
+
+    private List<Long> enrollments;
 }
