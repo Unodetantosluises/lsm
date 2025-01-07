@@ -8,7 +8,7 @@ import java.util.Optional;
 
 public interface CourseRepository extends JpaRepository<Course, Long> {
     // To find Course by Category
-    Optional<Course> findByCategory(String category);
+    //Optional<Course> findByCategory(String category);
 
     // To find Course by Name
     Optional<Course> findByCourseName(String courseName);
