@@ -7,9 +7,6 @@ import java.util.List;
 import java.util.Optional;
 
 public interface CourseRepository extends JpaRepository<Course, Long> {
-    // To find Course by Category
-    //Optional<Course> findByCategory(String category);
-
     // To find Course by Name
     Optional<Course> findByCourseName(String courseName);
 
@@ -18,4 +15,7 @@ public interface CourseRepository extends JpaRepository<Course, Long> {
 
     // To find course in the search bar
     List<Course> findByCourseNameContainingIgnoreCase(String courseName);
+
+    // To find Course by Category
+    Optional<Course> findByCategory_categoryName(String categoryName);
 }
