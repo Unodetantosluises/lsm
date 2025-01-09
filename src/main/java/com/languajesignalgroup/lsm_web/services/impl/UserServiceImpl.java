@@ -36,7 +36,6 @@ public class UserServiceImpl implements UserService {
         Role role = roleRepository.findByName("STUDENT");
         user.setRoles(Arrays.asList(role));
         userRepository.save(user);
-
     }
 
     @Override

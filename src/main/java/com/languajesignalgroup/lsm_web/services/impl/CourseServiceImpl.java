@@ -2,20 +2,22 @@ package com.languajesignalgroup.lsm_web.services.impl;
 
 import com.languajesignalgroup.lsm_web.dto.CourseDto;
 import com.languajesignalgroup.lsm_web.models.Course;
-import com.languajesignalgroup.lsm_web.models.Enrollment;
-import com.languajesignalgroup.lsm_web.models.Lesson;
+import com.languajesignalgroup.lsm_web.models.User;
 import com.languajesignalgroup.lsm_web.repository.CourseRepository;
 import com.languajesignalgroup.lsm_web.repository.UserRepository;
 import com.languajesignalgroup.lsm_web.services.CourseService;
+import org.apache.catalina.security.SecurityUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import static com.languajesignalgroup.lsm_web.mapper.CourseMapper.mapToCourse;
+import static com.languajesignalgroup.lsm_web.mapper.CourseMapper.mapToCourseDto;
+
 @Service
-public class CourseServiceImpl  implements CourseService {
+public class CourseServiceImpl implements CourseService {
 
     private CourseRepository courseRepository;
     private UserRepository userRepository;
@@ -34,27 +36,30 @@ public class CourseServiceImpl  implements CourseService {
 
     @Override
     public Course saveCourse(CourseDto courseDto) {
-        String u
+        String userName = SecurityUtil.getSessionUser();
+        User user = userRepository.findByUsername(userName);
+        Course course = mapToCourse(courseDto);
+        course.setUser(user);
+        return courseRepository.save(course);
     }
 
     @Override
-    public  void delete(Long courseId){
-        courseRepository.deleteById(courseId);
+    public CourseDto findCourseById(Long courseId) {
+        Course course = courseRepository.findById(courseId).get();
+        return mapToCourseDto(course);
     }
 
-    private CourseDto mapToCourseDto(Course course){
-        CourseDto courseDto = CourseDto.builder()
-                .courseId(course.getCourseId())
-                .courseName(course.getCourseName())
-                .courseCover(course.getCourseCover())
-                .courseDescription(course.getCourseDescription())
-                .userId(course.getUser().getUserId())
-                .categoryId(course.getCategory().getCategoryId())
-                .creationDate(course.getCreationDate())
-                .updatedOn(course.getUpdatedOn())
-                .lessons(course.getLessons().stream().map((lesson) -> mapToLessonDto(lesson)).collect(Collectors.toList())
-                .enrollments(course.getEnrollments().stream().map(Enrollment::getEnrollmentId).collect(Collectors.toList()))
-                .build();
-        return courseDto;
+    @Override
+    public void updateCourse(CourseDto courseDto) {
+        String userName = SecurityUtil.getSessionUser();
+        User user = userRepository.findByUsername(userName);
+        Course course = mapToCourse(courseDto);
+        course.setUser(user);
+        courseRepository.save(course);
+    }
+
+    @Override
+    public  void delete(long courseId){
+        courseRepository.deleteById(courseId);
     }
 }
