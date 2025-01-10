@@ -31,7 +31,7 @@ public class Category {
     private String categoryDescription;
 
     @Column(name = "active", nullable = false)
-    private boolean active;
+    private Boolean active;
 
     @Column(name = "creation_date", nullable = false)
     @CreationTimestamp

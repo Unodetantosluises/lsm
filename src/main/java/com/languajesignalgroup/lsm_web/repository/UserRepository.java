@@ -1,10 +1,12 @@
 package com.languajesignalgroup.lsm_web.repository;
 
-import com.languajesignalgroup.lsm_web.models.User;
+import com.languajesignalgroup.lsm_web.models.Users;
 import org.springframework.data.jpa.repository.JpaRepository;
 
-public interface UserRepository extends JpaRepository<User, Long> {
-    User findByUsername(String userName);
+public interface UserRepository extends JpaRepository<Users, Long> {
+    Users findByUsername(String userName);
 
-    User findByEmail(String emailUser);
+    Users findByEmail(String emailUser);
+
+    Users findFirstByUsername(String userName);
 }

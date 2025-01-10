@@ -51,7 +51,7 @@ public class Course {
 
     @ManyToOne
     @JoinColumn(name = "created_by", nullable = false)  // User creation info
-    private User user;
+    private Users createdBy;
 
     @OneToMany(mappedBy = "course", fetch = FetchType.LAZY, cascade = CascadeType.REMOVE)
     private List<Lesson> lessons = new ArrayList<>();

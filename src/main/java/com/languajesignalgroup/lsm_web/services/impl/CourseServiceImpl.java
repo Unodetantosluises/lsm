@@ -2,12 +2,13 @@ package com.languajesignalgroup.lsm_web.services.impl;
 
 import com.languajesignalgroup.lsm_web.dto.CourseDto;
 import com.languajesignalgroup.lsm_web.models.Course;
-import com.languajesignalgroup.lsm_web.models.User;
+import com.languajesignalgroup.lsm_web.models.Users;
 import com.languajesignalgroup.lsm_web.repository.CourseRepository;
 import com.languajesignalgroup.lsm_web.repository.UserRepository;
 import com.languajesignalgroup.lsm_web.services.CourseService;
-import org.apache.catalina.security.SecurityUtil;
+import com.languajesignalgroup.lsm_web.security.SecurityUtil;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.userdetails.User;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -18,7 +19,6 @@ import static com.languajesignalgroup.lsm_web.mapper.CourseMapper.mapToCourseDto
 
 @Service
 public class CourseServiceImpl implements CourseService {
-
     private CourseRepository courseRepository;
     private UserRepository userRepository;
 
@@ -37,9 +37,9 @@ public class CourseServiceImpl implements CourseService {
     @Override
     public Course saveCourse(CourseDto courseDto) {
         String userName = SecurityUtil.getSessionUser();
-        User user = userRepository.findByUsername(userName);
+        Users user = userRepository.findByUsername(userName);
         Course course = mapToCourse(courseDto);
-        course.setUser(user);
+        course.setCreatedBy(user);
         return courseRepository.save(course);
     }
 
@@ -52,9 +52,9 @@ public class CourseServiceImpl implements CourseService {
     @Override
     public void updateCourse(CourseDto courseDto) {
         String userName = SecurityUtil.getSessionUser();
-        User user = userRepository.findByUsername(userName);
+        Users user = userRepository.findByUsername(userName);
         Course course = mapToCourse(courseDto);
-        course.setUser(user);
+        course.setCreatedBy(user);
         courseRepository.save(course);
     }
 

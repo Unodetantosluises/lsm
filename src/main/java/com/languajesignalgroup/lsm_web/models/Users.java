@@ -18,7 +18,7 @@ import java.util.List;
 @Builder
 @Entity
 @Table(name = "users")
-public class User {
+public class Users {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY) // User id
     @Column(name = "id")
@@ -50,8 +50,7 @@ public class User {
     private String userPhotoUrl;
 
     @Column(name = "active", nullable = false) //User status
-    @Builder.Default
-    private boolean active = false;
+    private Boolean active = true;
 
     @Column(name = "registration_date", nullable = false) // User registration date
     @CreationTimestamp

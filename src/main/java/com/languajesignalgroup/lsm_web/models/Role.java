@@ -31,8 +31,7 @@ public class Role {
     private String rolDescription;
 
     @Column(name = "active", nullable = false) // Role status
-    @Builder.Default
-    private boolean active = false;
+    private Boolean active;
 
     @Column(name = "creation_date", nullable = false) // Role creation date
     @CreationTimestamp
