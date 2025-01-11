@@ -1,7 +1,7 @@
 package com.languajesignalgroup.lsm_web.dto;
 
 import com.languajesignalgroup.lsm_web.models.Category;
-import com.languajesignalgroup.lsm_web.models.User;
+import com.languajesignalgroup.lsm_web.models.Users;
 import jakarta.validation.constraints.NotEmpty;
 import lombok.Builder;
 import lombok.Data;

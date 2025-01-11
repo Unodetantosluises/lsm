@@ -1,8 +1,9 @@
 package com.languajesignalgroup.lsm_web.services.impl;
 
+import com.languajesignalgroup.lsm_web.dto.ChangePasswordDto;
 import com.languajesignalgroup.lsm_web.dto.RegistrationDto;
 import com.languajesignalgroup.lsm_web.models.Role;
-import com.languajesignalgroup.lsm_web.models.User;
+import com.languajesignalgroup.lsm_web.models.Users;
 import com.languajesignalgroup.lsm_web.repository.RoleRepository;
 import com.languajesignalgroup.lsm_web.repository.UserRepository;
 import com.languajesignalgroup.lsm_web.services.UserService;
@@ -28,7 +29,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public void saveUser(RegistrationDto registrationDto) {
-        User user = new User();
+        Users user = new Users();
         user.setUserName(registrationDto.getUserName());
         user.setUserLastName(registrationDto.getUserLastName());
         user.setBirthdateUser(LocalDate.from(registrationDto.getBirthdateUser()));
@@ -39,12 +40,12 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public User findByEmail(String userEmail) {
-        return userRepository.findByEmail(userEmail);
+    public Users findByEmail(String emailUser) {
+        return userRepository.findByEmail(emailUser);
     }
 
     @Override
-    public User findByUsername(String userName) {
+    public Users findByUsername(String userName) {
         return userRepository.findByUsername(userName);
     }
 }
