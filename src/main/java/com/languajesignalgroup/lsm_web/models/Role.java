@@ -42,5 +42,5 @@ public class Role {
     private LocalDateTime updatedOn;
 
     @ManyToMany(mappedBy = "roles", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    private List<User> users = new ArrayList<>();
+    private List<Users> users = new ArrayList<>();
 }

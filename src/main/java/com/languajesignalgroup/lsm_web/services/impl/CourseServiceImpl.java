@@ -8,7 +8,6 @@ import com.languajesignalgroup.lsm_web.repository.UserRepository;
 import com.languajesignalgroup.lsm_web.services.CourseService;
 import com.languajesignalgroup.lsm_web.security.SecurityUtil;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.userdetails.User;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -37,7 +36,7 @@ public class CourseServiceImpl implements CourseService {
     @Override
     public Course saveCourse(CourseDto courseDto) {
         String userName = SecurityUtil.getSessionUser();
-        Users user = userRepository.findByUsername(userName);
+        Users user = userRepository.findByUserName(userName);
         Course course = mapToCourse(courseDto);
         course.setCreatedBy(user);
         return courseRepository.save(course);
@@ -52,7 +51,7 @@ public class CourseServiceImpl implements CourseService {
     @Override
     public void updateCourse(CourseDto courseDto) {
         String userName = SecurityUtil.getSessionUser();
-        Users user = userRepository.findByUsername(userName);
+        Users user = userRepository.findByUserName(userName);
         Course course = mapToCourse(courseDto);
         course.setCreatedBy(user);
         courseRepository.save(course);

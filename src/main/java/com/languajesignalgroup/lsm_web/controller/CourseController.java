@@ -35,19 +35,12 @@ public class CourseController {
     public String createCourseForm(Model model){
         Course course = new Course();
         model.addAttribute("course", course);
-        return "course-create";
+        return "courses-create";
     }
 
     @GetMapping("/courses/{courseId}/delete")
     public String deleteCourse(@PathVariable("courseId") Long courseId) {
         courseService.delete(courseId);
         return "redirect:/courses";
-    }
-
-    @GetMapping("/courses/search")
-    public String searchCourse(@RequestParam(value = "query") String query, Model model) {
-        List<CourseDto> courses = courseService.searchCourses(query);
-        model.addAttribute("courses", courses);
-        return "courses-list";
     }
 }

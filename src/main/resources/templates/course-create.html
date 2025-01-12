@@ -1,10 +1,34 @@
-<!DOCTYPE html>
-<html lang="en">
+<html lang="en"
+      xmlns:th="http://thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout}">
 <head>
-    <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Create a Course</title>
 </head>
-<body>
-
+<body class="d-flex flex-column h-100">
+<main class="flex-shrink-0">
+    <!-- Page Content-->
+    <section layout:fragment="body" class="py-5">
+        <form>
+            <fieldset>
+                <legend>Legend</legend>
+                <div>
+                    <label for="exampleInputEmail1" class="form-label mt-4">Course Name</label>
+                    <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
+                    <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+                </div>
+                <div>
+                    <label for="exampleInputPassword1" class="form-label mt-4">Course Description</label>
+                    <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password" autocomplete="off">
+                </div>
+                <div>
+                    <label for="exampleInputPassword1" class="form-label mt-4">Course Cover</label>
+                    <input type="password" class="form-control" id="exampleInputPassword" placeholder="Password" autocomplete="off">
+                </div>
+                <button type="submit" class="btn btn-primary">Submit</button>
+            </fieldset>
+        </form>
+    </section>
+</main>
 </body>
 </html>

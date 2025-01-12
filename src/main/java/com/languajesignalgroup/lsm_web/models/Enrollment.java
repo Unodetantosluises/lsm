@@ -24,7 +24,7 @@ public class Enrollment {
 
     @ManyToOne
     @JoinColumn(name = "user_id", nullable = false) // User id of the user from table user
-    private User user;
+    private Users user;
 
     @ManyToOne
     @JoinColumn(name = "course_id", nullable = false) //user

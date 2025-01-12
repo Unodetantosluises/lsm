@@ -34,18 +34,18 @@ public class UserServiceImpl implements UserService {
         user.setUserLastName(registrationDto.getUserLastName());
         user.setBirthdateUser(LocalDate.from(registrationDto.getBirthdateUser()));
         user.setPassword(passwordEncoder.encode(registrationDto.getPassword()));
-        Role role = roleRepository.findByName("STUDENT");
+        Role role = roleRepository.findByRolName("STUDENT");
         user.setRoles(Arrays.asList(role));
         userRepository.save(user);
     }
 
     @Override
     public Users findByEmail(String emailUser) {
-        return userRepository.findByEmail(emailUser);
+        return userRepository.findByEmailUser(emailUser);
     }
 
     @Override
-    public Users findByUsername(String userName) {
-        return userRepository.findByUsername(userName);
+    public Users findByUserName(String userName) {
+        return userRepository.findByUserName(userName);
     }
 }

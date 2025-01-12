@@ -11,7 +11,7 @@ public interface CourseRepository extends JpaRepository<Course, Long> {
     Optional<Course> findByCourseName(String courseName);
 
     // To find all the courses created by a user
-    List<Course> findByUser_UserId(Long userId);
+    //List<Course> findByUser_UserId(Long userId);
 
     // To find course in the search bar
     List<Course> findByCourseNameContainingIgnoreCase(String courseName);
